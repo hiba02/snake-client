@@ -1,6 +1,5 @@
 const net = require('net');
 
-//The "connect" event is triggered on a connection as soon as it is successfully established.
 const connect = function() {
   const conn = net.createConnection({ 
     host: '192.168.0.103',
@@ -8,16 +7,22 @@ const connect = function() {
   });
   console.log('Sucess!');
   conn.setEncoding('utf8'); 
-  // message from Sever
   conn.on('data', (data) => {
-    console.log('Meessage: ', data);
+    data = 'Move: up'
+    conn.write(data);
   });
-  // client sending message to server
+
   conn.on('connect', () => {
     conn.write('Name: KYS');
+
+    for (let i = 0; i < 10 ; i++) {
+      setTimeout(() => {
+        conn.write('Move: up');
+      }, 50 * i)
+    }
+
   });
   return conn;
+
 }
 module.exports = connect;
-// console.log('Connecting ...');
-// connect();
