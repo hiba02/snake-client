@@ -20,7 +20,7 @@ const connect = function() {
         conn.write('Move: up');
       }, 50 * i)
     }
-
+    
   });
   return conn;
 
