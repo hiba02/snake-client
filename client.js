@@ -7,22 +7,7 @@ const connect = function() {
   });
   console.log('Sucess!');
   conn.setEncoding('utf8'); 
-  conn.on('data', (data) => {
-    data = 'Move: up'
-    conn.write(data);
-  });
 
-  conn.on('connect', () => {
-    conn.write('Name: KYS');
-
-    for (let i = 0; i < 10 ; i++) {
-      setTimeout(() => {
-        conn.write('Move: up');
-      }, 50 * i)
-    }
-    
-  });
   return conn;
-
 }
 module.exports = connect;
